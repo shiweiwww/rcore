@@ -1,1 +1,3 @@
 commit.sh
+*.lock
+**/target
