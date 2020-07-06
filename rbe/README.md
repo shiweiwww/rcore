@@ -1,1 +1,1 @@
-[rust by example](https://doc.rust-lang.org/rust-by-example/index.html)
+coding:[rust by example](https://doc.rust-lang.org/rust-by-example/index.html)
