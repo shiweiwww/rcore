@@ -26,8 +26,8 @@ fn read_and_validate(b: &mut dyn io::BufRead) -> Result<PositiveNonzeroInteger, 
     let mut line = String::new();
     b.read_line(&mut line)?;
     let num: i64 = line.trim().parse()?;
-    let answer = PositiveNonzeroInteger::new(num);
-    answer
+    let answer = PositiveNonzeroInteger::new(num)?;
+    Ok(answer)
 }
 
 // This is a test helper function that turns a &str into a BufReader.
@@ -71,11 +71,11 @@ fn test_ioerror() {
 struct PositiveNonzeroInteger(u64);
 
 impl PositiveNonzeroInteger {
-    fn new(value: i64) -> Result<PositiveNonzeroInteger,  Box<dyn error::Error>> {
+    fn new(value: i64) -> Result<PositiveNonzeroInteger,  CreationError> {
         if value == 0 {
-            Err(Box::new(CreationError::Zero))
+            Err(CreationError::Zero)
         } else if value < 0 {
-            Err(Box::new(CreationError::Negative))
+            Err(CreationError::Negative)
         } else {
             Ok(PositiveNonzeroInteger(value as u64))
         }
@@ -85,11 +85,12 @@ impl PositiveNonzeroInteger {
 #[test]
 fn test_positive_nonzero_integer_creation() {
     assert!(PositiveNonzeroInteger::new(10).is_ok());
-    // assert_eq!(
-    //     Err(Box::new(CreationError::Negative)),
-    //     (PositiveNonzeroInteger::new(-10)).map(|e| e)
-    // );
-    // assert_eq!(Err(CreationError::Zero), PositiveNonzeroInteger::new(0));
+    assert_eq!(
+        Err(CreationError::Negative),
+        PositiveNonzeroInteger::new(-10)
+    );
+    assert_eq!(Err(CreationError::Zero), PositiveNonzeroInteger::new(0));
+
 }
 
 #[derive(PartialEq, Debug)]
