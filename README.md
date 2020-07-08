@@ -11,6 +11,9 @@
   - #### Day-7月7日
     * #####  rust by example(完成)
     * #####  rustlings(70%完成)
+  - #### Day-7月8日
+    * #####  完成rustlings，对option，result理解不是很好，需要多练习下相关编程的代码
+    * #####  RISC-V指令集的学习以及riscv-tools安装，尚未安装成功
 #### 2.week2[7.9-7.17]
 #### 3.week3[7.18-7.24]
 #### 4.week4[7.25-7.30]

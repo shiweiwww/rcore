@@ -56,3 +56,18 @@ fn test3() {
     }
     println!("rc_a share count = {}",Rc::strong_count(&rc_a));
 }
+
+
+#[test]
+fn test4() {
+    
+    fn factorial1(num: u64) -> u64{
+        let mut sum=num;
+        for i in 1..num{
+            sum *=i;
+        }
+        sum
+    }
+    let result = (1..0).fold(0, |acc, x| acc*x);
+    println!("{}",result);
+}
