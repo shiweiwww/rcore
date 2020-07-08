@@ -6,15 +6,16 @@
 // 
 // The trait AppendBar has only one function,
 // which appends "Bar" to any object
-// implementing this trait.
 
-// I AM NOT DONE
 trait AppendBar {
     fn append_bar(self) -> Self;
 }
 
 impl AppendBar for String {
     //Add your code here
+    fn append_bar(self) -> Self{
+        self+"Bar"
+    }
 
 }
 
