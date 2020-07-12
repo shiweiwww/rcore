@@ -26,9 +26,9 @@
 
   - #### Day-7月11日
     * #####  RISC-V汇编学习
-    * #####  rust15练习，目前做完5道
+    * #####  rust15练习，目前做完5,6道
       - ###### 5.[二叉树的实现](https://github.com/shiweiwww/rcore/tree/master/exercis/exe5)
-
+      - ###### 6.[哈希表实现](https://github.com/shiweiwww/rcore/tree/master/exercis/exe6)
 #### 2.week2[7.9-7.17]
 #### 3.week3[7.18-7.24]
 #### 4.week4[7.25-7.30]
