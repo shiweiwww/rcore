@@ -26,7 +26,7 @@
 
   - #### Day-7月11日
     * #####  RISC-V汇编学习
-    * #####  rust15道题，目前做了5道，视频学习资料已经看完，我计划是两周内完成riscv汇编学习已经rust相关练习题
+    * #####  rust15练习，目前做了5道
       - ###### 5.[二叉树的实现](https://github.com/shiweiwww/rcore/tree/master/exercis/exe5)
 
 #### 2.week2[7.9-7.17]
