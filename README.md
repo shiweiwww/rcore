@@ -18,11 +18,16 @@
     * #####  RISC-V指令集的学习以及riscv-tools安装，编译成功，目前汇编感觉问题不大，卡在如何riscv汇编输出字符串到屏幕上，待解决
   - #### Day-7月10日
     * #####  RISC-V指令集的学习,不清楚riscv汇编如何向屏幕输出字符串，目前已经提了issue
-    * #####  rust15道题，目前做了三道，视频学习资料已经看完，我计划是两周内完成riscv汇编学习已经rust相关练习题
+    * #####  rust15道题，目前做了4道，视频学习资料已经看完，我计划是两周内完成riscv汇编学习已经rust相关练习题
       - ###### [链表，静态双向链表，动态双向链表实现](https://github.com/shiweiwww/rcore/tree/master/exercis/exe1)
       - ###### [栈和队列实现](https://github.com/shiweiwww/rcore/tree/master/exercis/exe2)
       - ###### [一个简单的统计引擎](https://github.com/shiweiwww/rcore/tree/master/exercis/exe3)
       - ###### [输入输出和文件](https://github.com/shiweiwww/rcore/tree/master/exercis/exe4)
+
+  - #### Day-7月11日
+    * #####  RISC-V汇编学习
+    * #####  rust15道题，目前做了5道，视频学习资料已经看完，我计划是两周内完成riscv汇编学习已经rust相关练习题
+      - ###### [二叉树的实现](https://github.com/shiweiwww/rcore/tree/master/exercis/exe5)
 
 #### 2.week2[7.9-7.17]
 #### 3.week3[7.18-7.24]
