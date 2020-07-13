@@ -23,13 +23,22 @@
       - ###### 2.[栈和队列实现](https://github.com/shiweiwww/rcore/tree/master/exercis/exe2)
       - ###### 3.[一个简单的统计引擎](https://github.com/shiweiwww/rcore/tree/master/exercis/exe3)
       - ###### 4.[输入输出和文件](https://github.com/shiweiwww/rcore/tree/master/exercis/exe4)
-
+#### 2.week2[7.11-7.17]
   - #### Day-7月11日
     * #####  RISC-V汇编学习
     * #####  rust15练习，目前做完5,6道
       - ###### 5.[二叉树的实现](https://github.com/shiweiwww/rcore/tree/master/exercis/exe5)
       - ###### 6.[哈希表实现](https://github.com/shiweiwww/rcore/tree/master/exercis/exe6)
-#### 2.week2[7.9-7.17]
+  - #### Day-7月12日
+    * #####  RISC-V汇编学习
+
+  - #### Day-7月13日
+    * #####  RIS-V特权指令级规范学习，目前学了一章，完成RISC-V浙大在线课程观看
+    * #####  rust15练习，目前做完7,8,9道
+      - ###### 7.[结构体和指向它们的指针](https://github.com/shiweiwww/rcore/tree/master/exercis/exe7)
+      - ###### 8.[冒泡排序和快排的实现](https://github.com/shiweiwww/rcore/tree/master/exercis/exe8)
+      - ###### 9.[二叉搜索树的实现](https://github.com/shiweiwww/rcore/tree/master/exercis/exe9)
+
 #### 3.week3[7.18-7.24]
 #### 4.week4[7.25-7.30]
 
