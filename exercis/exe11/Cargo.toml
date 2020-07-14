@@ -1,0 +1,14 @@
+[package]
+name = "exe11"
+version = "0.1.0"
+authors = ["shiweixxx <swxxxa@163.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+[lib]
+name = "leetcode704"
+path = "src/leetcode704.rs"
+test = true
+

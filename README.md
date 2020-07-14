@@ -39,6 +39,16 @@
       - ###### 8.[冒泡排序和快排的实现](https://github.com/shiweiwww/rcore/tree/master/exercis/exe8)
       - ###### 9.[二叉搜索树的实现](https://github.com/shiweiwww/rcore/tree/master/exercis/exe9)
 
+  - #### Day-7月14日
+    * #####  RISC-V特权指令级规范学习第二，三章观阅读，以及完成RiSC-V手册阅读
+    * #####  rust15练习，目前做完7,8,9道
+      - ###### 10.[leetcode.350.连续数组求交集](https://github.com/shiweiwww/rcore/tree/master/exercis/exe10)
+      - ###### 11.[leetcode.704.二分查找](https://github.com/shiweiwww/rcore/tree/master/exercis/exe11)
+      - ###### 12.[leetcode.1.两数之和](https://github.com/shiweiwww/rcore/tree/master/exercis/exe12)
+      - ###### 13.[leetcode.50.x^n次方求解](https://github.com/shiweiwww/rcore/tree/master/exercis/exe13)
+
+
+
 #### 3.week3[7.18-7.24]
 #### 4.week4[7.25-7.30]
 
