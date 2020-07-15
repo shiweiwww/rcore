@@ -50,7 +50,7 @@
   - #### Day-7月15日
     * #####  RISC-V特权指令级规范学习第三章,第四章学习
       - ###### tinyqemu测试汇编代码，输出helloworld
-      - ###### 从网上看到一个中断的汇编代码，刚好结合risc-v特权级指令阅读，对risc-v特权级有了更具体的理解[参考](http://www.voidcn.com/article/p-wikmjhim-brz.html),但是目前tinyqemu抛了下，没通过，还在找原因
+      - ###### 从网上看到一个中断的汇编代码，刚好结合risc-v特权级指令阅读，对risc-v特权级有了更具体的理解[参考](http://www.voidcn.com/article/p-wikmjhim-brz.html),但是目前tinyqemu跑了下，没通过，还在找原因
     * #####  rust15练习，目前做14,15道
       - ###### 14.[leetcode.60.不同路径](https://github.com/shiweiwww/rcore/tree/master/exercis/exe14)
       - ###### 15.[leetcode.70.爬楼梯](https://github.com/shiweiwww/rcore/tree/master/exercis/exe15)
