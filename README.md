@@ -41,7 +41,7 @@
 
   - #### Day-7月14日
     * #####  RISC-V特权指令级规范学习第二，三章观阅读，以及完成RiSC-V手册阅读
-    * #####  rust15练习，用rust复现了下基本的数据结构关键代码部分，引用在递归中使用，接下来刷几道leetcode吧(ps：实在不知道做什么题了)目前做完10,11,12,13道
+    * #####  rust15练习，用rust复现了下基本的数据结构关键代码部分，进一步理解使用引用的概念，接下来刷几道leetcode吧(ps：实在不知道做什么题了)目前做完10,11,12,13道
       - ###### 10.[leetcode.350.连续数组求交集](https://github.com/shiweiwww/rcore/tree/master/exercis/exe10)
       - ###### 11.[leetcode.704.二分查找](https://github.com/shiweiwww/rcore/tree/master/exercis/exe11)
       - ###### 12.[leetcode.1.两数之和](https://github.com/shiweiwww/rcore/tree/master/exercis/exe12)
