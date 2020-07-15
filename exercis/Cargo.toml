@@ -13,4 +13,7 @@ members=[
     "exe11",
     "exe12",
     "exe13",
+    "exe14",
+    "exe15",
+    "csv_challenge"
 ]

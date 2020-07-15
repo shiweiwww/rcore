@@ -41,13 +41,21 @@
 
   - #### Day-7月14日
     * #####  RISC-V特权指令级规范学习第二，三章观阅读，以及完成RiSC-V手册阅读
-    * #####  rust15练习，目前做完7,8,9道
+    * #####  rust15练习，用rust复现了下基本的数据结构关键代码部分，引用在递归中使用，接下来刷几道leetcode吧(ps：实在不知道做什么题了)目前做完10,11,12,13道
       - ###### 10.[leetcode.350.连续数组求交集](https://github.com/shiweiwww/rcore/tree/master/exercis/exe10)
       - ###### 11.[leetcode.704.二分查找](https://github.com/shiweiwww/rcore/tree/master/exercis/exe11)
       - ###### 12.[leetcode.1.两数之和](https://github.com/shiweiwww/rcore/tree/master/exercis/exe12)
       - ###### 13.[leetcode.50.x^n次方求解](https://github.com/shiweiwww/rcore/tree/master/exercis/exe13)
 
-
+  - #### Day-7月15日
+    * #####  RISC-V特权指令级规范学习第三章,第四章学习
+      - ###### tinyqemu测试汇编代码，输出helloworld
+      - ###### 从网上看到一个中断的汇编代码，刚好结合risc-v特权级指令阅读，对risc-v特权级有了更具体的理解[参考](http://www.voidcn.com/article/p-wikmjhim-brz.html),但是目前tinyqemu抛了下，没通过，还在找原因
+    * #####  rust15练习，目前做14,15道
+      - ###### 14.[leetcode.60.不同路径](https://github.com/shiweiwww/rcore/tree/master/exercis/exe14)
+      - ###### 15.[leetcode.70.爬楼梯](https://github.com/shiweiwww/rcore/tree/master/exercis/exe15)
+    * #####  rust编程之道第十章 模块化编程例子coding
+      - ###### [模块化编程](https://github.com/shiweiwww/rcore/tree/master/exercis/csv_challenge)
 
 #### 3.week3[7.18-7.24]
 #### 4.week4[7.25-7.30]
