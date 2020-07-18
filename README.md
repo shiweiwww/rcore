@@ -56,7 +56,16 @@
       - ###### 15.[leetcode.70.爬楼梯](https://github.com/shiweiwww/rcore/tree/master/exercis/exe15)
     * #####  rust编程之道第十章 模块化编程例子coding
       - ###### [模块化编程](https://github.com/shiweiwww/rcore/tree/master/exercis/csv_challenge)
-
+  - #### Day-7月16日
+    * #####  RISC-V汇编的视频以及特权级的视频
+      - ###### xx
+      - ###### risc-v特权级讲解
 #### 3.week3[7.18-7.24]
+  - #### Day-7月17日
+    * #####  完成lab0的实验，解决了汇编riscv并成功输出hello,rcore
+  - #### Day-7月18日
+    * #####  完成lab1的实验，汇编实现ebreak中断
+
+
 #### 4.week4[7.25-7.30]
 
