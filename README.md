@@ -58,8 +58,8 @@
       - ###### [模块化编程](https://github.com/shiweiwww/rcore/tree/master/exercis/csv_challenge)
   - #### Day-7月16日
     * #####  RISC-V汇编的视频以及特权级的视频
-      - ###### xx
-      - ###### risc-v特权级讲解
+      - ###### [risc-v汇编例子](https://www.youtube.com/watch?v=KLybwrpfQ3I)
+      - ###### [risc-v特权级讲解]
 #### 3.week3[7.18-7.24]
   - #### Day-7月17日
     * #####  完成lab0的实验，解决了汇编riscv并成功输出hello,rcore
