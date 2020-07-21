@@ -25,7 +25,7 @@ $(BIN_FILE): kernel
 
 # 查看反汇编结果
 asm:
-	@$(OBJDUMP) -S  $(KERNEL_FILE) | less
+	@$(OBJDUMP) -x  $(KERNEL_FILE) 
 
 # 清理编译出的文件
 clean:

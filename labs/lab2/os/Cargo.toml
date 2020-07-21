@@ -9,7 +9,11 @@ edition = "2018"
 [dependencies]
 riscv = { git = "https://github.com/rcore-os/riscv", features = ["inline-asm"] }
 buddy_system_allocator = "0.4.0"
-
+lazy_static = { version = "1.4", features = ["spin_no_std"] }
+log = "0.4"
+spin = "0.5"
+bit_field = "0.10.0"
+bitflags = "1.2.1"
 
 # panic 时直接终止，因为我们没有实现堆栈展开的功能
 [profile.dev]
