@@ -60,7 +60,7 @@ impl MemorySet {
         // 每个字段在页表中进行映射
         for segment in segments.iter() {
             // 同时将新分配的映射关系保存到 allocated_pairs 中
-            mapping.map(segment, None)?;
+            allocated_pairs.extend(mapping.map(segment, None)?);
         }
 
         
