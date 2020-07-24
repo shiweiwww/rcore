@@ -62,7 +62,7 @@
       - ###### [risc-v特权级讲解]
 #### 3.week3[7.18-7.24]
   - #### Day-7月17日
-    * #####  完成lab0的实验，解决了汇编riscv并成功输出hello,rcore
+    * #####  完成lab0的实验，解决了汇编riscv并成功输出hello,rcore,见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab0)
   - #### Day-7月18日
     * #####  完成lab1的实验，汇编实现ebreak中断
   - #### Day-7月19日
