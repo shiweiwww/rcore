@@ -12,5 +12,6 @@
  ##### 四. 问题建议以及改进的地方
   - ##### 由于lab0比较简单，都是基本环境的搭建，没什么问题
   - ##### 做到lab0，终于解决了困扰几天的问题，如何用riscv汇编打印字符串以及如何调试riscv汇编，有了这，riscv汇编就简单多了
+  - ##### 对rust了解的还是很浅，看了有时间了还得刷下官网的rust的[Embedded devices](https://www.rust-lang.org/what/embedded)教程
 
 
