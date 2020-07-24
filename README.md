@@ -59,7 +59,7 @@
   - #### Day-7月16日
     * #####  RISC-V汇编的视频以及特权级的视频
       - ###### [risc-v汇编例子](https://www.youtube.com/watch?v=KLybwrpfQ3I)
-      - ###### [risc-v特权级讲解]
+      - ###### [risc-v特权级讲解](https://content.riscv.org/wp-content/uploads/2017/05/riscv-privileged-v1.10.pdf)
 #### 3.week3[7.18-7.24]
   - #### Day-7月17日
     * #####  完成lab0的实验，详情见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab0)
