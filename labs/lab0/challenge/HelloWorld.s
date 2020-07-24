@@ -1,5 +1,6 @@
 .global _start
 _start: 
+	auipc	sp,18
 	li		t0,0
 	li		t1,17
 	# li	t1,hello_chr
