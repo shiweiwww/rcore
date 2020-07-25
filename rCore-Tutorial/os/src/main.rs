@@ -73,14 +73,15 @@ pub extern "C" fn rust_main(_hart_id: usize, dtb_pa: PhysicalAddress) -> ! {
 
     {
         let mut processor = PROCESSOR.get();
-        let kernel_process = Process::new_kernel().unwrap();
-        for i in 1..33usize {
-            processor.add_thread(create_kernel_thread(
-                kernel_process.clone(),
-                test_kernel_thread as usize,
-                Some(&[i]),
-            ));
-        }
+        // let kernel_process = Process::new_kernel().unwrap();
+        // for i in 1..33usize {
+        //     processor.add_thread(create_kernel_thread(
+        //         kernel_process.clone(),
+        //         test_kernel_thread as usize,
+        //         Some(&[i]),
+        //     ));
+        // }
+            processor.add_thread(create_user_process("hello_world"));
     }
 
     unsafe { PROCESSOR.unsafe_get().run() }
