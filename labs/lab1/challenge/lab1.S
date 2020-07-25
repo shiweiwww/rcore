@@ -233,14 +233,6 @@ fr:
 
 
 
-
-
-
-
-
-
-
-
 .data
 	before_interrupt:	.string	"before","\n"
 	interrupt:			.string	"interrupt","\n"
