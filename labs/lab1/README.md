@@ -8,7 +8,12 @@
   - ###### riscv汇编实现时钟中断以及断点中断
     * ###### 和rust的代码没什么大的区别，主要是csr寄存器的操作以及debug模式下查看相关寄存器的状态，具体见challenge/lab1.S代码
   - ###### 实验
-    * ##### 暂未开始做，先刷一遍熟悉下
+    * ##### 1.如果程序访问不存在的地址，会得到 Exception::LoadFault。模仿捕获 ebreak 和时钟中断的方法，捕获 LoadFault（之后 panic 即可）
+      + ###### handle_interrupt中添加Exception::LoadFault即可
+    * ##### 2.在处理异常的过程中，如果程序想要非法访问的地址是 0x0，则打印 SUCCESS!
+      + ###### LoadFault异常时候stval保存了要访问的内存的值，直接在捕捉Exception::LoadFault异常，判断stval是否为0即可
+    * ##### 3.添加或修改少量代码，使得运行时触发这个异常，并且打印出 SUCCESS!。要求：不允许添加或修改任何 unsafe 代码
+      + ###### ebreak时候修改context.sepc=0，中断返会执行sret时候即可触发Exception::LoadFault异常
  ##### 三. 实验结果和分析
   - ###### 在 rust_main 函数中，执行 ebreak 命令后至函数结束前，sp 寄存器的值是怎样变化的？
     * ###### ebreak会导致断点中断，由中断处理函数处理异常，中断处理完成后会返回到ebreak这行代码接着执行(sepc中的值是执行ebreak出的pc值，不是下一条，需要+4才行),中断处理函数handle_interrupt之前需要把sp的值保存在context中，中断结束后，进行恢复
