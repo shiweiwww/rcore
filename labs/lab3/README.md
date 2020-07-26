@@ -24,8 +24,8 @@
       * ###### PageTableEntry页表项主要是设置页表项各个bit的设置
       * ###### PageTable是页表一个类型为PageTableEntry大小为512的数组
       * ###### PageTableTracker用来管理页表PageTable
-      * ###### Segment定义页表映射方式以及虚拟地址范围，主要考虑到内核是放在一段高虚拟地址空间，对所有的进程都一样的，所以线性映射就行，对用户程序而言，看到的虚拟地址空间是一样的(地址隔离)，即所有的用户程序虚拟地址空间开都是一样的，基于页分配方式去映射而非线性映射
-      * ###### MemorySet封装了映射关系mapping以及要映射的段segments，segments是个Vec<Segment>，Memoryset::new_kernel中把各个内核段text_start，rodata_start，data_start，bss_start封装成Segment并push到segments中，同时初始化mapping。mapping.map进行映射，先是mapping.find查找虚拟页号对应的页表项，页表项为空，则新建页表，并填充页表项，进入下一级页表，执行同样的操作，注意的是页表的查询是用了虚拟地址了，页表项中是物理页号，计算下一级页表base时候转换成虚拟地址才行。
+      * ###### Segment定义页表映射方式以及虚拟地址范围，主要考虑到内核是放在一段高虚拟地址空间，对所有的进程都一样的，所以线性映射就行，对用户程序而言，看到的虚拟地址空间是一样的(地址隔离)，即所有的用户程序虚拟地址空间都是一样的，基于页分配方式去映射而非线性映射
+      * ###### MemorySet封装了映射关系mapping以及要映射的段segments，segments是个Vec\<Segment\>，Memoryset::new_kernel中把各个内核段text_start，rodata_start，data_start，bss_start封装成Segment并push到segments中，同时初始化mapping。mapping.map进行映射，先是mapping.find查找虚拟页号对应的页表项，页表项为空，则新建页表，并填充页表项，进入下一级页表，执行同样的操作，注意的是页表的查询是用了虚拟地址了，页表项中是物理页号，计算下一级页表base时候转换成虚拟地址才行。
 
  ##### 四. 问题建议以及改进的地方
   - ###### Debug 时候gdb发现无法查看物理内存，给调试页表带来不便
