@@ -62,18 +62,16 @@
       - ###### [risc-v特权级讲解](https://content.riscv.org/wp-content/uploads/2017/05/riscv-privileged-v1.10.pdf)
 #### 3.week3[7.18-7.24]
   - #### Day-7月17日
-    * #####  完成lab0的实验，详情见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab0)
+    * #####  完成lab0实验，详情见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab0)
     * #####  注释：os实验代码见[labs](https://github.com/shiweiwww/rcore/tree/master/labs)目录下以及遇到的问题感想见实验报告
   - #### Day-7月18日-7月19日
-    * #####  完成lab1的实验，详情见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab1)
+    * #####  完成lab1实验，详情见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab1)
   - #### Day-7月20日
-    * #####  完成lab2的实验，详情见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab2)
-  - #### Day-7月21日
-    * #####  完成lab3部分实验，主要是加深页表的理解
-  - #### Day-7月22日  
-    * #####  完成lab3实验，目前页面置换算法没去做，涉及到进程线程，后面实验在补上
+    * #####  完成lab2实验，详情见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab2)
+  - #### Day-7月21日-7月22日  
+    * #####  完成lab3实验，详情见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab3)
   - #### Day-7月23日  
-    * #####  完成lab4实验  
+    * #####  完成lab4实验
   - #### Day-7月24日  
     * #####  完成lab5实验，比预期完了一天
   - #### Day-7月25日  
