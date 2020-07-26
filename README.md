@@ -63,7 +63,7 @@
 #### 3.week3[7.18-7.24]
   - #### Day-7月17日
     * #####  完成lab0实验，详情见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab0)
-    * #####  注释：os实验代码见[labs](https://github.com/shiweiwww/rcore/tree/master/labs)目录下以及遇到的问题感想见实验报告
+    <!-- * #####  注释：os实验代码见[labs](https://github.com/shiweiwww/rcore/tree/master/labs)目录下以及遇到的问题感想见实验报告 -->
   - #### Day-7月18日-7月19日
     * #####  完成lab1实验，详情见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab1)
   - #### Day-7月20日
