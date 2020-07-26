@@ -6,7 +6,7 @@ use crate::drivers::{
     block::BlockDevice,
     driver::{DeviceType, DRIVERS},
 };
-pub mod kernel;
+// pub mod kernel;
 pub use crate::kernel::{Condvar,syscall_handler};
 
 use crate::memory::alloc::{sync::Arc, vec::Vec};

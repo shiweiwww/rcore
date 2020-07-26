@@ -3,7 +3,7 @@ use riscv::register::stvec;
 use riscv::register::scause::{Scause,Trap,Exception,Interrupt};
 use super::timer;
 use super::super::process::*;
-use crate::fs::syscall_handler;
+// use crate::fs::syscall_handler;
 
 global_asm!(include_str!("../interrupt.asm"));
 
@@ -44,7 +44,7 @@ pub fn handle_interrupt(context: &mut Context, scause: Scause, stval: usize) -> 
         // 断点中断（ebreak）
         Trap::Exception(Exception::Breakpoint) => breakpoint(context),
         // 系统调用
-        Trap::Exception(Exception::UserEnvCall) => syscall_handler(context),
+        // Trap::Exception(Exception::UserEnvCall) => syscall_handler(context),
         // 时钟中断
         Trap::Interrupt(Interrupt::SupervisorTimer) => supervisor_timer(context),
         // 其他情况，终止当前线程

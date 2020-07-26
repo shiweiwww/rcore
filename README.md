@@ -67,7 +67,7 @@
   - #### Day-7月18日-7月19日
     * #####  完成lab1的实验，详情见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab1)
   - #### Day-7月20日
-    * #####  完成lab2的实验
+    * #####  完成lab2的实验，详情见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab2)
   - #### Day-7月21日
     * #####  完成lab3部分实验，主要是加深页表的理解
   - #### Day-7月22日  
