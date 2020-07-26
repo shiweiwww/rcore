@@ -24,10 +24,30 @@ pub struct FrameAllocator<T: Allocator> {
 
 impl<T: Allocator> FrameAllocator<T> {
     /// 创建对象
-    pub fn new(range: impl Into<Range<PhysicalPageNumber>> + Copy) -> Self {
+    pub fn new(range: impl Into<Range<PhysicalPageNumber>> + Copy+core::fmt::Debug) -> Self {
+        //建立链表，链表节点为PhysicalPageNumber-PhysicalAddress为一个node，PhysicalAddress相当于next指针，指向链接的下一个PhysicalPageNumber的值
+        let mut index = 1;
+        let len = range.into().len();
+        for item in range.into().iter(){
+            let y:usize = PhysicalAddress::from(item).into();
+            let ptr = y as *mut usize;
+            unsafe {*ptr = index;}
+            index += 1;
+
+        }
+        for i in 0..len{
+            let y:usize = PhysicalAddress::from(range.into().get(i)).into();
+            let ptr = y as *mut usize;
+            let v= unsafe {*ptr};
+            println!("i={},v={}",i,v);
+            if i>10{
+                break;
+            }
+        }  
         FrameAllocator {
             start_ppn: range.into().start,
-            allocator: T::new(range.into().len()),
+            // allocator: T::new(range.into().len()),
+            allocator:  T::new(range.into().start.into(),range.into().start,len)
         }
     }
 
@@ -36,7 +56,7 @@ impl<T: Allocator> FrameAllocator<T> {
         self.allocator
             .alloc()
             .ok_or("no available frame to allocate")
-            .map(|offset| {FrameTracker(self.start_ppn + offset)})
+            .map(|offset| {FrameTracker(self.start_ppn+offset)})
     }
 
     /// 将被释放的帧添加到空闲列表的尾部

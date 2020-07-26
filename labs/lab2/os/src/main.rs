@@ -69,14 +69,15 @@ pub extern "C" fn rust_main() -> ! {
             Result::Ok(frame_tracker) => frame_tracker,
             Result::Err(err) => panic!("{}", err)
         };
-        v.push(frame_0);
-        v.push(frame_1);
-        v.push(frame_2);
-        // println!("{} and {}", frame_0.address(), frame_1.address());
+        // v.push(frame_0);
+        // v.push(frame_1);
+        // v.push(frame_2);
+        println!("{} and {}", frame_0.address(), frame_1.address());
     }
-    for vv in v.iter(){
-        println!("{}", vv.address());
-    }
+    // for vv in v.iter(){
+        // println!("{}", vv.address());
+        // drop(vv);
+    // }
 
 
     panic!();
