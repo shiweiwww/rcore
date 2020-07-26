@@ -6,6 +6,7 @@
  
  
  ##### 二. 操作方法和实验步骤
+  - ###### 通过objdump -x 查看kernel_end和lab2中的KERNEL_END_ADDRESS输出对比是一致的
   - ###### 动态内存分配可以根据程序运行时状态修改内存申请的大小，要让内核中支持动态内存分配，必须实现rust的Trait GlobalAlloc的alloc和dealloc方法，实验中是直接使用的已开发的包buddy_system_allocator，更具体的实现参考[博客](https://os.phil-opp.com/kernel-heap/)
   - ###### riscv中opensi自动完成包括物理内存在内的各外设的扫描，并将结果以DTB格式保存，其地址保存在a1寄存器中。QEMU默认的DRAM物理内存地址范围为[0x80000000, 0x88000000)，通过lds脚本中的kernel_end即可知道内核结束的地址，对整个内存分布有了初步了解
   - ###### 为了更好的管理物理内存减少外碎片提高内存使用率，以4kb为一页，代码中FrameTracker用来进行物理页管理和FrameAllocator分配器用来进行物理页的分配和回收，FrameAllocator<T: Allocator>中的泛型T要求实现Allocator trait,而Allocator trait可以看成是页面分配算法的抽象，通过impl Allocator来实现物理页分配算法，如线段树等
