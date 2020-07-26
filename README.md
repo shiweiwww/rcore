@@ -71,7 +71,7 @@
   - #### Day-7月21日-7月22日  
     * #####  完成lab3实验，详情见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab3)
   - #### Day-7月23日  
-    * #####  完成lab4实验
+    * #####  完成lab4实验，详情见[实验报告](https://github.com/shiweiwww/rcore/tree/master/labs/lab4)
   - #### Day-7月24日  
     * #####  完成lab5实验，比预期完了一天
   - #### Day-7月25日  
