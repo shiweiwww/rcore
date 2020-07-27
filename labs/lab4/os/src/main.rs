@@ -31,6 +31,7 @@ mod interrupt;
 mod memory;
 mod process;
 use process::*;
+use riscv::register::{time, sie, sstatus};
 
 // 汇编编写的程序入口，具体见该文件
 global_asm!(include_str!("entry.asm"));
@@ -44,7 +45,6 @@ pub extern "C" fn rust_main() -> ! {
     // panic!("end of rust_main");
     interrupt::init();
     memory::init();
-
     println!("******************************************* lab4 *******************************");
 
     {
@@ -68,11 +68,11 @@ pub extern "C" fn rust_main() -> ! {
     let context = PROCESSOR.get().prepare_next_thread();
     // 启动第一个线程
     unsafe { __restore(context as usize) };
-
     unreachable!();
 
 }
 
 fn sample_process(id: usize) {
     println!("hello from kernel thread {}", id);
+    loop{};//模拟sleep
 }

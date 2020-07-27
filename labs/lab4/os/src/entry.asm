@@ -44,11 +44,15 @@ boot_stack_top:
     .section .data
     .align 12
 boot_page_table:
-    .quad 0
-    .quad 0
+    # .8byte表示长度为8个字节的整数
+    .8byte 0
+    .8byte 0
     # 第 2 项：0x8000_0000 -> 0x8000_0000，0xcf 表示 VRWXAD 均为 1
-    .quad (0x80000 << 10) | 0xcf
-    .zero 507 * 8
+    .8byte (0x80000 << 10) | 0xcf
+    .zero 505 * 8
+    # 第 508 项（外设用）：0xffff_ffff_0000_0000 -> 0x0000_0000，0xcf 表示 VRWXAD 均为 1
+    .8byte (0x00000 << 10) | 0xcf
+    .8byte 0
     # 第 510 项：0xffff_ffff_8000_0000 -> 0x8000_0000，0xcf 表示 VRWXAD 均为 1
-    .quad (0x80000 << 10) | 0xcf
-    .quad 0
+    .8byte (0x80000 << 10) | 0xcf
+    .8byte 0
