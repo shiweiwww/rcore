@@ -52,7 +52,7 @@ pub extern "C" fn rust_main() -> ! {
         // 创建一个内核进程
         let kernel_process = Process::new_kernel().unwrap();
         // 为这个进程创建多个线程，并设置入口均为 sample_process，而参数不同
-        for i in 1..9usize {
+        for i in 1..2usize {
             processor.add_thread(create_kernel_thread(
                 kernel_process.clone(),
                 sample_process as usize,

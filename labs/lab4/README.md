@@ -47,21 +47,70 @@
             context
         }                
       ```
-    * ##### 实验：实现进程的 fork()。目前的内核线程不能进行系统调用，所以我们先简化地实现为“按 F 进行 fork”。fork 后应当为目前的进程复制一份几乎一样的拷贝。
+    * ##### 实现线程的 clone()。目前的内核线程不能进行系统调用，所以我们先简化地实现为“按 C 进行 clone”。clone 后应当为目前的线程复制一份几乎一样的拷贝，新线程与旧线程同属一个进程，公用页表和大部分内存空间，而新线程的栈是一份拷贝。
+      + ##### fork当前线程实现
+      ```rust
+        // //fork当前进程
+        pub fn fork(&self,context:&Context)->MemoryResult<Arc<Thread>> {
 
+            let stack = self.process
+                .write()
+                .alloc_page_range(STACK_SIZE, Flags::READABLE | Flags::WRITABLE)?;
 
+            for p in 0..STACK_SIZE{
+                *VirtualAddress(stack.start.0+p).deref::<u8>()=*VirtualAddress(self.stack.start.0+p).deref::<u8>()
+            }
 
+            let mut new_context = context.clone();
+            let s:usize = stack.start.into();
+            let e:usize = self.stack.end.into();
+            new_context.set_sp(s+context.sp()-e);
 
+            let stack = self.process
+                .write()
+                .alloc_page_range(STACK_SIZE, Flags::READABLE | Flags::WRITABLE)?;        
+            for p in 0..STACK_SIZE{
+                *VirtualAddress(stack.start.0+p).deref::<u8>()=*VirtualAddress(self.stack.start.0+p).deref::<u8>()
+            }
+            let mut new_context=context.clone();
+            let s:usize = stack.start.into();
+            let e:usize = self.stack.end.into();
+            new_context.set_sp(s+context.sp()-e);
 
-
-
-
-
-
-
-
-    
-
+            // // 打包成线程
+            let thread = Arc::new(Thread {
+                id: unsafe {
+                    THREAD_COUNTER += 1;
+                    THREAD_COUNTER
+                },
+                stack,
+                process:self.process.clone(),
+                inner: Mutex::new(ThreadInner {
+                    context: Some(new_context),
+                    sleeping: false,
+                    dead: false,
+                    // descriptors: vec![],
+                }),
+            });
+            Ok(thread)
+        }
+        //键盘中断按下f执行fork当前线程
+        /// 处理外部中断，只实现了键盘输入
+        fn supervisor_external(context: &mut Context) -> *mut Context {
+            let mut c = console_getchar();
+            if c==3{
+                // PROCESSOR.get().kill_current_thread();
+                println!("thread id {} is killed",PROCESSOR.get().current_thread().id);
+                PROCESSOR.get().current_thread().as_ref().inner().dead = true;
+                unsafe { llvm_asm!("ebreak" :::: "volatile") };
+            }else if(c==102){//按f键
+                let thread = PROCESSOR.get().current_thread().fork(context).unwrap();
+                PROCESSOR.get().add_thread(thread.clone());
+                println!("forking thread id {:#?}",thread.id);
+            }
+            context
+        }
+      ```
 
  ##### 三. 实验结果和分析
   - ###### 代码流程分析 
@@ -73,5 +122,6 @@
 
  ##### 四. 问题建议以及改进的地方
   - ###### 相比较于ucore的实现，整体思想没什么大的变化，都是需要保存各个寄存器的值，需要一个内核栈来保存
-  - ###### 实验题目前先不做，先刷一遍整体对代码有理解在刷吧
+  - ###### 线程的clone比较简单，进程的fork试了没成功，我的尝试在fork代码中替换self.process为process::new_kernel，按f可以fork，但是ctrl+c后kill完线程后键盘中断无效了
+  <!-- - ###### 实验题目前先不做，先刷一遍整体对代码有理解在刷吧 -->
 
