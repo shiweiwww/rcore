@@ -18,7 +18,7 @@ use core::ptr::slice_from_raw_parts_mut;
 /// 某个进程的内存映射关系
 pub struct Mapping {
     /// 保存所有使用到的页表
-    page_tables: Vec<PageTableTracker>,
+    pub page_tables: Vec<PageTableTracker>,
     /// 根页表的物理页号
     root_ppn: PhysicalPageNumber,
 }

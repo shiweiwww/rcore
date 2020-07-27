@@ -31,7 +31,40 @@
         }
 
         ```
-    * ##### 
+    * ##### 4.实验：基于你在实验四（上）的实践，实现 sys_fork 系统调用。该系统调用复制一个进程，并为父进程返回 1（目前没有引入进程 ID，也可以自行补充为进程 ID），而为子进程返回 0。
+        + ###### 系统调用类似实验3题，定义sys_fork，不再列出,fork代码如下,还是fork了当前线程，fork进程需要复制页表，后面有时间再补上
+        ```rust
+            pub fn fork(&self,context:&Context)->MemoryResult<Arc<Thread>> {
+                let stack = self.process
+                    .write()
+                    .alloc_page_range(STACK_SIZE, Flags::READABLE | Flags::WRITABLE)?;
+
+                for p in 0..STACK_SIZE{
+                    *VirtualAddress(stack.start.0+p).deref::<u8>()=*VirtualAddress(self.stack.start.0+p).deref::<u8>()
+                }
+                let mut new_context = context.clone();
+                let s:usize = stack.start.into();
+                let e:usize = self.stack.start.into();
+                new_context.set_sp(s+context.sp()-e);
+                // // 打包成线程
+                let thread = Arc::new(Thread {
+                    id: unsafe {
+                        THREAD_COUNTER += 1;
+                        THREAD_COUNTER
+                    },
+                    stack,
+                    process:self.process.clone(),
+                    inner: Mutex::new(ThreadInner {
+                        context: Some(new_context),
+                        sleeping: false,
+                        dead: false,
+                        descriptors: vec![STDIN.clone(), STDOUT.clone()],
+                    }),
+                });
+                Ok(thread)
+
+            }
+        ```
     * ##### 
     * ##### 
     * ##### 

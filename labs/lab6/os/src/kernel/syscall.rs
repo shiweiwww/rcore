@@ -6,6 +6,8 @@ pub const SYS_READ: usize = 63;
 pub const SYS_WRITE: usize = 64;
 pub const SYS_EXIT: usize = 93;
 const SYSCALL_GETID: usize = 101;
+const SYSCALL_FORK: usize =103;
+
 
 
 /// 系统调用在内核之内的返回值
@@ -34,6 +36,7 @@ pub fn syscall_handler(context: &mut Context) -> *mut Context {
         SYS_WRITE => sys_write(args[0], args[1] as *mut u8, args[2]),
         SYS_EXIT => sys_exit(args[0]),
         SYSCALL_GETID => sys_get_id(), 
+        SYSCALL_FORK => sys_fork(context),
         _ => {
             println!("unimplemented syscall: {}", syscall_id);
             SyscallResult::Kill

@@ -19,6 +19,7 @@ use crate::memory::{address::*, FRAME_ALLOCATOR, PAGE_SIZE};
 ///
 /// 使用 `Tracker` 其实就很像使用一个 smart pointer。如果需要引用计数，
 /// 就在外面再套一层 [`Arc`](alloc::sync::Arc) 就好
+#[derive(Debug)]
 pub struct FrameTracker(pub(super) PhysicalPageNumber);
 
 impl FrameTracker {

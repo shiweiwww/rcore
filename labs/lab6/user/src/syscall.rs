@@ -7,6 +7,7 @@ const SYSCALL_READ: usize = 63;
 const SYSCALL_WRITE: usize = 64;
 const SYSCALL_EXIT: usize = 93;
 const SYSCALL_GETID: usize = 101;
+const SYSCALL_FORK: usize =103;
 
 /// 将参数放在对应寄存器中，并执行 `ecall`
 fn syscall(id: usize, arg0: usize, arg1: usize, arg2: usize) -> isize {
@@ -55,5 +56,9 @@ pub fn sys_exit(code: isize) -> ! {
 
 pub fn sys_get_id()->isize{
     let ret = syscall(SYSCALL_GETID,0,0,0);
+    return ret;
+}
+pub fn sys_fork()->isize{
+    let ret = syscall(SYSCALL_FORK,0,0,0);
     return ret;
 }

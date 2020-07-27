@@ -36,6 +36,7 @@ impl PageTable {
 /// 而 `PageTableTracker` 会保存在某个线程的元数据中（也就是在操作系统的堆上），指向其真正的页表。
 ///
 /// 当 `PageTableTracker` 被 drop 时，会自动 drop `FrameTracker`，进而释放帧。
+#[derive(Debug)]
 pub struct PageTableTracker(pub FrameTracker);
 
 impl PageTableTracker {
