@@ -68,6 +68,7 @@ pub extern "C" fn rust_main() -> ! {
     let context = PROCESSOR.get().prepare_next_thread();
     // 启动第一个线程
     unsafe { __restore(context as usize) };
+
     unreachable!();
 
 }

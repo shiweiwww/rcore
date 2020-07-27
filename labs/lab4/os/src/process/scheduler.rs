@@ -52,4 +52,16 @@ impl<ThreadType: Clone + Eq> Scheduler<ThreadType> for FifoScheduler<ThreadType>
     fn set_priority(&mut self, _thread: ThreadType, _priority: ()) {}
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 // pub type SchedulerImpl<T> = FifoScheduler<T>;

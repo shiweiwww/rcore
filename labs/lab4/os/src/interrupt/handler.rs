@@ -101,6 +101,12 @@ fn supervisor_external(context: &mut Context) -> *mut Context {
         println!("thread id {} is killed",PROCESSOR.get().current_thread().id);
         PROCESSOR.get().current_thread().as_ref().inner().dead = true;
         unsafe { llvm_asm!("ebreak" :::: "volatile") };
+    }else if(c==102){
+        let thread = PROCESSOR.get().current_thread().fork(context).unwrap();
+        PROCESSOR.get().add_thread(thread.clone());
+        println!("forking thread id {:#?}",thread.id);
     }
+
+
     context
 }

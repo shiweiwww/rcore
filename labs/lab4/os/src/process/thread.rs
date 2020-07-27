@@ -93,6 +93,41 @@ impl Thread {
     pub fn inner(&self) -> spin::MutexGuard<ThreadInner> {
         self.inner.lock()
     }
+
+    // //fork当前进程
+    pub fn fork(&self,context:&Context)->MemoryResult<Arc<Thread>> {
+
+        let stack = self.process
+            .write()
+            .alloc_page_range(STACK_SIZE, Flags::READABLE | Flags::WRITABLE)?;
+        for p in 0..STACK_SIZE{
+            *VirtualAddress(stack.start.0+p).deref::<u8>()=*VirtualAddress(self.stack.start.0+p).deref::<u8>()
+        }
+        let mut new_context = context.clone();
+        let s:usize = stack.start.into();
+        let e:usize = self.stack.end.into();
+        new_context.set_sp(s+context.sp()-e);
+
+        // // 打包成线程
+        let thread = Arc::new(Thread {
+            id: unsafe {
+                THREAD_COUNTER += 1;
+                THREAD_COUNTER
+            },
+            stack,
+            process:self.process.clone(),
+            inner: Mutex::new(ThreadInner {
+                context: Some(new_context),
+                sleeping: false,
+                dead: false,
+                // descriptors: vec![],
+            }),
+        });
+        Ok(thread)
+
+    }
+
+
 }
 
 /// 通过线程 ID 来判等
@@ -137,10 +172,10 @@ pub fn create_kernel_thread(
 ) -> Arc<Thread> {
     // 创建线程
     let thread = Thread::new(process, entry_point, arguments).unwrap();
-    println!("{:#?}", thread);
     // 设置线程的返回地址为 kernel_thread_exit
     thread.as_ref().inner().context.as_mut().unwrap()
         .set_ra(kernel_thread_exit as usize);
+    println!("{:#?}", thread);
     thread
 }
 /// 内核线程需要调用这个函数来退出
@@ -150,3 +185,5 @@ fn kernel_thread_exit() {
     // 制造一个中断来交给操作系统处理
     unsafe { llvm_asm!("ebreak" :::: "volatile") };
 }
+
+
