@@ -6,7 +6,41 @@
  ##### 二. 操作方法和实验步骤
   - ###### 参考实验指导书中线程和进程的介绍
   - ###### 实验
-    * ##### 暂未开始做，先刷一遍熟悉下
+    * ##### 1.原理：使用条件变量之后，分别从线程和操作系统的角度而言读取字符的系统调用是阻塞的还是非阻塞的
+        + ###### 对于线程而言是阻塞的，io完成读后触发条件变量通知操作系统；对系统而言是非阻塞的，等待io的时候os会执行其他线程
+    * ##### 2.设计：如果要让用户线程能够使用 Vec 等，需要做哪些工作？如果要让用户线程能够使用大于其栈大小的动态分配空间，需要做哪些工作？
+        + ###### vec动态空间在内核.bss段，用户线程访映射的空间是内核之上的，把动态分配空间移动到kernel_end以上的某个空间就可以，其他的和内核使用vec等没什么区别;应该和String，Box使用没什么区别，记录开始的指针和长度，把这两项压入栈
+    * ##### 3.实验：实现 get_tid 系统调用，使得用户线程可以获取自身的线程 ID
+        + ###### 定义user态的get_id和sys_get_id函数，代码如下
+        ```rust
+        /// user/src/syscall.rs
+        const SYSCALL_GETID: usize = 101;
+        pub fn sys_get_id()->isize{
+            let ret = syscall(SYSCALL_GETID,0,0,0);
+            return ret;
+        }
+        /// user/src/hello_world.rs
+        let tid = get_id();
+        println!("xxxxxxxxx thread id is:{}",tid);
+        ..
+        ..
+        /// os/src/kernel/process.rs
+        pub (super) fn sys_get_id()->SyscallResult{
+            let ret = PROCESSOR.get().current_thread().id;
+            return SyscallResult::Proceed(ret);
+        }
+
+        ```
+    * ##### 
+    * ##### 
+    * ##### 
+    * ##### 
+    * ##### 
+
+
+
+
+
  ##### 三. 实验结果和分析
   - ###### 代码流程分析 
       * ###### 打包磁盘镜像,运行如下代码,为目标下载一个标准库和core库，然后运行make build就行
@@ -58,5 +92,5 @@
       ```
  ##### 四. 问题建议以及改进的地方
   - ###### 自己按照实验指导做了下，似乎是进程那块有点问题，卡住了，只能看了下跑了下master的代码
-  - ###### 实验题目前先不做，先刷一遍整体对代码有理解在刷吧
+  <!-- - ###### 实验题目前先不做，先刷一遍整体对代码有理解在刷吧 -->
 

@@ -17,7 +17,6 @@
             pub struct StrideScheduler {
                 pool: LinkedList<Arc<Thread>>,
             }
-
             /// `Default` 创建一个空的调度器
             impl Default for StrideScheduler {
                 fn default() -> Self {
@@ -26,7 +25,6 @@
                     }
                 }
             }
-
             impl Scheduler<Arc<Thread>> for StrideScheduler {
                 type Priority = (i32,i32);
                 fn add_thread(&mut self, thread: Arc<Thread>) {
@@ -36,7 +34,7 @@
                 fn get_next(&mut self) -> Option<Arc<Thread>> {
                     match self.pool.pop_front() {
                         Some(thread)=>{
-                            
+
                             self.pool.push_back(thread.clone());
                             let mut thd=thread;
                             let (mut min_stride,mut ps)=thd.inner().priority;

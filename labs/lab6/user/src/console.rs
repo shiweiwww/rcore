@@ -56,3 +56,7 @@ pub fn getchars() -> String {
         }
     }
 }
+
+pub fn get_id()->isize{
+    return sys_get_id();
+}

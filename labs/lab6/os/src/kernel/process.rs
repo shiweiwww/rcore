@@ -10,3 +10,7 @@ pub(super) fn sys_exit(code: usize) -> SyscallResult {
     );
     SyscallResult::Kill
 }
+pub (super) fn sys_get_id()->SyscallResult{
+    let ret = PROCESSOR.get().current_thread().id;
+    return SyscallResult::Proceed(ret);
+}
