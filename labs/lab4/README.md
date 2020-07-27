@@ -53,6 +53,14 @@
         // //fork当前线程
         pub fn fork(&self,context:&Context)->MemoryResult<Arc<Thread>> {
 
+
+            ///
+            /// fork 进程版本
+            /// let process = Process::new_kernel().unwrap();
+            /// let stack = process.write().alloc_page_range(STACK_SIZE, Flags::READABLE | Flags::WRITABLE)?;
+            /// 其余的代码和fork线程一样不用改变，最后Thread::new的时候传入process而不是self.process
+            /// 
+
             let stack = self.process
                 .write()
                 .alloc_page_range(STACK_SIZE, Flags::READABLE | Flags::WRITABLE)?;
