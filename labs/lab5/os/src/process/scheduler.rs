@@ -53,3 +53,52 @@ impl<ThreadType: Clone + Eq> Scheduler<ThreadType> for FifoScheduler<ThreadType>
 }
 
 // pub type SchedulerImpl<T> = FifoScheduler<T>;
+/// 采用 FIFO 算法的线程调度器
+pub struct StrideScheduler {
+    pool: LinkedList<Arc<Thread>>,
+}
+
+/// `Default` 创建一个空的调度器
+impl Default for StrideScheduler {
+    fn default() -> Self {
+        Self {
+            pool: LinkedList::new(),
+        }
+    }
+}
+
+impl Scheduler<Arc<Thread>> for StrideScheduler {
+    type Priority = (i32,i32);
+    fn add_thread(&mut self, thread: Arc<Thread>) {
+        // 加入链表尾部
+        self.pool.push_back(thread);
+    }
+    fn get_next(&mut self) -> Option<Arc<Thread>> {
+        let mut thd = match self.pool.pop_front() {
+            Some(thread)=>{self.pool.push_back(thread.clone());Some(thread)}
+            None => None
+        };
+        let mut thd = thd.unwrap();
+        let (mut min_stride,mut ps)=thd.inner().priority;
+        for thread in self.pool.iter(){
+            let (stride,pass) = thread.inner().priority;
+            if min_stride>stride{
+                min_stride = stride;
+                ps = pass;
+                thd = thread.clone();
+            }
+        }
+        thd.inner().priority=(min_stride+ps,ps);
+        Some(thd)
+
+    }
+    fn remove_thread(&mut self, thread: &Arc<Thread>) {
+        // 移除相应的线程并且确认恰移除一个线程
+        let mut removed = self.pool.drain_filter(|t| t == thread);
+        assert!(removed.next().is_some() && removed.next().is_none());
+    }
+    fn set_priority(&mut self, _thread: Arc<Thread>, _priority: (i32,i32)) {
+        _thread.inner().priority=_priority;
+
+    }
+}

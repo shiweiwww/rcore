@@ -29,6 +29,7 @@ pub struct ThreadInner {
     /// 是否已经结束
     pub dead: bool,
     // pub descriptors: Vec<Arc<dyn INode>>,
+    pub priority:(i32,i32)
 }
 
 impl Thread {
@@ -57,6 +58,7 @@ impl Thread {
         process: Arc<RwLock<Process>>,
         entry_point: usize,
         arguments: Option<&[usize]>,
+        priority:(i32,i32)
     ) -> MemoryResult<Arc<Thread>> {
         // 让所属进程分配并映射一段空间，作为线程的栈
         let stack = process
@@ -84,6 +86,7 @@ impl Thread {
                 sleeping: false,
                 dead: false,
                 // descriptors: vec![],
+                priority:priority
             }),
         });
 
@@ -134,9 +137,10 @@ pub fn create_kernel_thread(
     process: Arc<RwLock<Process>>,
     entry_point: usize,
     arguments: Option<&[usize]>,
+    priority:(i32,i32)
 ) -> Arc<Thread> {
     // 创建线程
-    let thread = Thread::new(process, entry_point, arguments).unwrap();
+    let thread = Thread::new(process, entry_point, arguments,priority).unwrap();
     println!("{:#?}", thread);
     // 设置线程的返回地址为 kernel_thread_exit
     thread.as_ref().inner().context.as_mut().unwrap()

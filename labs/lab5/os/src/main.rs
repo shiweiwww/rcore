@@ -50,36 +50,47 @@ pub extern "C" fn rust_main(_hart_id: usize, dtb_pa: PhysicalAddress) -> ! {
     fs::init();
 
     println!("******************************************* lab5 *******************************");
-
     println!("_hard_id:{},dtb_pa:=0x{}",_hart_id,dtb_pa);
 
+    // {
+    //     let mut processor = PROCESSOR.get();
+    //     // 创建一个内核进程
+    //     let kernel_process = Process::new_kernel().unwrap();
+    //     // 为这个进程创建多个线程，并设置入口均为 sample_process，而参数不同
+    //     processor.add_thread(create_kernel_thread(
+    //             kernel_process.clone(),
+    //             ls as usize,
+    //             Some(&[0]),
+    //             (1,2)
+    //     ));
+    // }
 
+    // unsafe { PROCESSOR.unsafe_get().run() }
+
+    println!("***************************************************测试优先级***************************************");
     {
+
         let mut processor = PROCESSOR.get();
         // 创建一个内核进程
         let kernel_process = Process::new_kernel().unwrap();
-        // 为这个进程创建多个线程，并设置入口均为 sample_process，而参数不同
-        processor.add_thread(create_kernel_thread(
-                kernel_process.clone(),
-                simple as usize,
-                Some(&[0]),
-        ));
-    }
 
-    extern "C" {
-        fn __restore(context: usize);
+        processor.add_thread(create_kernel_thread(kernel_process.clone(),simple as usize,Some(&[1]),(10,2)));//设置(stride,pass)
+        processor.add_thread(create_kernel_thread(kernel_process.clone(),simple as usize,Some(&[2]),(1,2)));//设置(stride,pass)
+        processor.add_thread(create_kernel_thread(kernel_process.clone(),simple as usize,Some(&[3]),(3,2)));//设置(stride,pass)
+        processor.add_thread(create_kernel_thread(kernel_process.clone(),simple as usize,Some(&[4]),(4,2)));//设置(stride,pass)
+        processor.add_thread(create_kernel_thread(kernel_process.clone(),simple as usize,Some(&[5]),(1,2)));//设置(stride,pass)
+
     }
-    // 获取第一个线程的 Context
-    let context = PROCESSOR.get().prepare_next_thread();
-    // 启动第一个线程
-    unsafe { __restore(context as usize) };
+    unsafe { PROCESSOR.unsafe_get().run() }
 
     unreachable!();
 
 }
-
-/// 测试任何内核线程都可以操作文件系统和驱动
 fn simple(id: usize) {
+    println!("hello from thread id {}", id);
+}
+/// 测试任何内核线程都可以操作文件系统和驱动
+fn ls(id: usize) {
     println!("hello from thread id {}", id);
     // 新建一个目录
     fs::ROOT_INODE
@@ -87,6 +98,4 @@ fn simple(id: usize) {
         .expect("failed to mkdir /tmp");
     // 输出根文件目录内容
     fs::ls("/");
-
-    loop {}
 }

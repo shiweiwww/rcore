@@ -8,7 +8,8 @@ pub struct Processor {
     /// 当前正在执行的线程
     current_thread: Option<Arc<Thread>>,
     /// 线程调度器，记录活跃线程
-    scheduler: FifoScheduler<Arc<Thread>>,
+    // scheduler: FifoScheduler<Arc<Thread>>,
+    scheduler: StrideScheduler,
     /// 保存休眠线程
     sleeping_threads: HashSet<Arc<Thread>>,
 }
