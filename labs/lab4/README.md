@@ -50,7 +50,7 @@
     * ##### 实现线程的 clone()。目前的内核线程不能进行系统调用，所以我们先简化地实现为“按 C 进行 clone”。clone 后应当为目前的线程复制一份几乎一样的拷贝，新线程与旧线程同属一个进程，公用页表和大部分内存空间，而新线程的栈是一份拷贝。
       + ##### fork当前线程实现
       ```rust
-        // //fork当前进程
+        // //fork当前线程
         pub fn fork(&self,context:&Context)->MemoryResult<Arc<Thread>> {
 
             let stack = self.process
@@ -62,17 +62,6 @@
             }
 
             let mut new_context = context.clone();
-            let s:usize = stack.start.into();
-            let e:usize = self.stack.end.into();
-            new_context.set_sp(s+context.sp()-e);
-
-            let stack = self.process
-                .write()
-                .alloc_page_range(STACK_SIZE, Flags::READABLE | Flags::WRITABLE)?;        
-            for p in 0..STACK_SIZE{
-                *VirtualAddress(stack.start.0+p).deref::<u8>()=*VirtualAddress(self.stack.start.0+p).deref::<u8>()
-            }
-            let mut new_context=context.clone();
             let s:usize = stack.start.into();
             let e:usize = self.stack.end.into();
             new_context.set_sp(s+context.sp()-e);
@@ -93,6 +82,7 @@
                 }),
             });
             Ok(thread)
+
         }
         //键盘中断按下f执行fork当前线程
         /// 处理外部中断，只实现了键盘输入

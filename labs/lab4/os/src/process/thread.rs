@@ -110,17 +110,6 @@ impl Thread {
         let e:usize = self.stack.end.into();
         new_context.set_sp(s+context.sp()-e);
 
-        let stack = self.process
-            .write()
-            .alloc_page_range(STACK_SIZE, Flags::READABLE | Flags::WRITABLE)?;        
-        for p in 0..STACK_SIZE{
-            *VirtualAddress(stack.start.0+p).deref::<u8>()=*VirtualAddress(self.stack.start.0+p).deref::<u8>()
-        }
-        let mut new_context=context.clone();
-        let s:usize = stack.start.into();
-        let e:usize = self.stack.end.into();
-        new_context.set_sp(s+context.sp()-e);
-
         // // 打包成线程
         let thread = Arc::new(Thread {
             id: unsafe {
