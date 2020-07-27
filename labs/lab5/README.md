@@ -34,22 +34,25 @@
                     self.pool.push_back(thread);
                 }
                 fn get_next(&mut self) -> Option<Arc<Thread>> {
-                    let mut thd = match self.pool.pop_front() {
-                        Some(thread)=>{self.pool.push_back(thread.clone());Some(thread)}
+                    match self.pool.pop_front() {
+                        Some(thread)=>{
+                            
+                            self.pool.push_back(thread.clone());
+                            let mut thd=thread;
+                            let (mut min_stride,mut ps)=thd.inner().priority;
+                            for thread in self.pool.iter(){
+                                let (stride,pass) = thread.inner().priority;
+                                if min_stride>stride{
+                                    min_stride = stride;
+                                    ps = pass;
+                                    thd = thread.clone();
+                                }
+                            }
+                            thd.inner().priority=(min_stride+ps,ps);
+                            Some(thd)
+                        },
                         None => None
-                    };
-                    let mut thd = thd.unwrap();
-                    let (mut min_stride,mut ps)=thd.inner().priority;
-                    for thread in self.pool.iter(){
-                        let (stride,pass) = thread.inner().priority;
-                        if min_stride>stride{
-                            min_stride = stride;
-                            ps = pass;
-                            thd = thread.clone();
-                        }
                     }
-                    thd.inner().priority=(min_stride+ps,ps);
-                    Some(thd)
                 }
                 fn remove_thread(&mut self, thread: &Arc<Thread>) {
                     // 移除相应的线程并且确认恰移除一个线程
@@ -58,8 +61,10 @@
                 }
                 fn set_priority(&mut self, _thread: Arc<Thread>, _priority: (i32,i32)) {
                     _thread.inner().priority=_priority;
+
                 }
             }
+
             ///测试代码
             /// main.rs
             {
